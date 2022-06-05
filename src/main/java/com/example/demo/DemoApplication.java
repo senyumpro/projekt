@@ -24,7 +24,11 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Lessor lessor = new Lessor();
 		lessor.setFirstName("John");
-		lessor.setLastName("Do");
+		lessor.setLastName("Doe");
 		lessorRepository.save(lessor);
+	}
+
+	public void chuj() {
+
 	}
 }
