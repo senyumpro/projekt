@@ -25,12 +25,13 @@ public class PlaceForRent {
 
     }
 
-    public PlaceForRent(Long id, String name, double area, double unitPrice, Lessor lessor, String description) {
+    public PlaceForRent(Long id, String name, double area, double unitPrice, Lessor lessor, Reservation reservation, String description) {
         this.id = id;
         this.name = name;
         this.area = area;
         this.unitPrice = unitPrice;
         this.lessor = lessor;
+        this.reservation = reservation;
         this.description = description;
     }
 
@@ -78,5 +79,13 @@ public class PlaceForRent {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

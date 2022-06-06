@@ -1,21 +1,25 @@
 package com.example.demo.dto;
 
-import com.example.demo.entity.PlaceForRent;
+import com.example.demo.entity.Reservation;
 
-public class LessorDTO {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private PlaceForRent placeForRent;
+import java.util.Set;
 
-    public LessorDTO() {
+public class LesseeDTO {
+
+    public Long id;
+    public String firstName;
+    public String lastName;
+    public Set<Reservation> reservations;
+
+    public LesseeDTO() {
 
     }
-    public LessorDTO(Long id, String firstName, String lastName, PlaceForRent placeForRent) {
+
+    public LesseeDTO(Long id, String firstName, String lastName, Set<Reservation> reservations) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.placeForRent = placeForRent;
+        this.reservations = reservations;
     }
 
     public Long getId() {
@@ -42,11 +46,11 @@ public class LessorDTO {
         this.lastName = lastName;
     }
 
-    public PlaceForRent getPlaceForRent() {
-        return placeForRent;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setPlaceForRent(PlaceForRent placeForRent) {
-        this.placeForRent = placeForRent;
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

@@ -17,7 +17,6 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-
 	private LessorRepository lessorRepository;
 
 	@Override
