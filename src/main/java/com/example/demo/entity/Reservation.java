@@ -14,7 +14,7 @@ public class Reservation {
     @JoinColumn(name = "lessee_id")
     private Lessee lessee;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "place_for_rent_id")
     private PlaceForRent placeForRent;
 

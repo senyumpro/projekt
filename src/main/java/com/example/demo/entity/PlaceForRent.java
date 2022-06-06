@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "places")
@@ -16,8 +17,8 @@ public class PlaceForRent {
     @OneToOne(mappedBy="placeForRent", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     private Lessor lessor;
 
-    @OneToOne(mappedBy = "placeForRent", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    private Reservation reservation;
+    @OneToMany(mappedBy = "placeForRent", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    private Set<Reservation> reservations;
 
     private String description;
 
@@ -25,13 +26,13 @@ public class PlaceForRent {
 
     }
 
-    public PlaceForRent(Long id, String name, double area, double unitPrice, Lessor lessor, Reservation reservation, String description) {
+    public PlaceForRent(Long id, String name, double area, double unitPrice, Lessor lessor, Set<Reservation> reservations, String description) {
         this.id = id;
         this.name = name;
         this.area = area;
         this.unitPrice = unitPrice;
         this.lessor = lessor;
-        this.reservation = reservation;
+        this.reservations = reservations;
         this.description = description;
     }
 
@@ -81,11 +82,11 @@ public class PlaceForRent {
         this.description = description;
     }
 
-    public Reservation getReservation() {
-        return reservation;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

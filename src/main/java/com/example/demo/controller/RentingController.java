@@ -5,9 +5,7 @@ import com.example.demo.dto.ReservationDTO;
 import com.example.demo.entity.Reservation;
 import com.example.demo.service.RentingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -18,9 +16,14 @@ public class RentingController {
     @Autowired
     private RentingService rentingService;
 
-    @GetMapping("/lessors")
-    public List<LessorDTO> getAllLessors() {
-        return rentingService.getAllLessors();
+    @PostMapping("reservations/addReservation")
+    public Reservation addReservation(@RequestBody Reservation reservation) {
+        return rentingService.addReservation(reservation);
+    }
+
+    @PutMapping("reservations/updateReservation")
+    public Reservation updateReservation(@RequestBody Reservation reservation) {
+        return rentingService.updateReservation(reservation);
     }
 
     @GetMapping("/reservations/reservationsByName/{lessorId}")
@@ -32,4 +35,5 @@ public class RentingController {
     public Set<Reservation> getReservationsByPlaceForRentId(@PathVariable Long placeForRentId) {
         return rentingService.getReservationsByPlaceForRentId(placeForRentId);
     }
+
 }

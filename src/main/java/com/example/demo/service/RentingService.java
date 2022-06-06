@@ -10,6 +10,7 @@ import com.example.demo.entity.Reservation;
 import com.example.demo.repository.LesseeRepository;
 import com.example.demo.repository.LessorRepository;
 import com.example.demo.repository.PlaceForRentRepository;
+import com.example.demo.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +32,17 @@ public class RentingService {
     @Autowired
     private PlaceForRentRepository placeForRentRepository;
 
-    public List<LessorDTO> getAllLessors() {
-        return lessorRepository.findAll()
-                .stream()
-                .map(this::convertLessorEntityToDTO)
-                .collect(Collectors.toList());
+    @Autowired
+    private ReservationRepository reservationRepository;
+
+    public Reservation addReservation(Reservation reservation) {
+        reservationRepository.save(reservation);
+        return reservation;
+    }
+
+    public Reservation updateReservation(Reservation reservation) {
+        reservationRepository.save(reservation);
+        return reservation;
     }
 
     public Set<Reservation> getReservationsByLesseeId(Long lesseeId) {
@@ -45,8 +52,28 @@ public class RentingService {
 
     public Set<Reservation> getReservationsByPlaceForRentId(Long placeForRentId) {
         PlaceForRent placeForRent = placeForRentRepository.getReferenceById(placeForRentId);
-        //return placeForRent.getReservations();
-        return null;
+        return placeForRent.getReservations();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*public List<LessorDTO> getAllLessors() {
+        return lessorRepository.findAll()
+                .stream()
+                .map(this::convertLessorEntityToDTO)
+                .collect(Collectors.toList());
+
     }
 
     private LessorDTO convertLessorEntityToDTO(Lessor lessor) {
@@ -56,5 +83,5 @@ public class RentingService {
         lessorDTO.setLastName(lessor.getLastName());
 
         return lessorDTO;
-    }
+    }*/
 }
