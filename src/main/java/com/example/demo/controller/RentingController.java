@@ -11,29 +11,34 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@RequestMapping("/reservations")
 public class RentingController {
 
     @Autowired
     private RentingService rentingService;
 
-    @PostMapping("reservations/addReservation")
-    public Reservation addReservation(@RequestBody Reservation reservation) {
-        return rentingService.addReservation(reservation);
+    //TODO - return DTO + id!
+    @PostMapping
+    public Reservation addReservation(@RequestBody ReservationDTO reservationDTO) {
+        return rentingService.addReservation(reservationDTO);
     }
 
-    @PutMapping("reservations/updateReservation")
+    @PutMapping
     public Reservation updateReservation(@RequestBody Reservation reservation) {
         return rentingService.updateReservation(reservation);
     }
 
-    @GetMapping("/reservations/reservationsByName/{lessorId}")
-    public Set<Reservation> getReservationsByLesseeId(@PathVariable Long lessorId) {
-        return rentingService.getReservationsByLesseeId(lessorId);
-    }
+    @GetMapping
+    public Set<Reservation> getReservationsByParam(@RequestParam Long lessorId, @RequestParam Long placeForRentId) {
 
-    @GetMapping("reservations/reservationsByPlace/{placeForRentId}")
-    public Set<Reservation> getReservationsByPlaceForRentId(@PathVariable Long placeForRentId) {
-        return rentingService.getReservationsByPlaceForRentId(placeForRentId);
+        if (lessorId != null) {
+            return rentingService.getReservationsByLesseeId(lessorId);
+        }
+        else if (placeForRentId != null) {
+            return rentingService.getReservationsByPlaceForRentId(placeForRentId);
+        }
+        else {
+            return Set.of(); //TODO
+        }
     }
-
 }

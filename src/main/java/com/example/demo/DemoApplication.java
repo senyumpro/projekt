@@ -21,9 +21,6 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Lessor lessor = new Lessor();
-		lessor.setFirstName("John");
-		lessor.setLastName("Doe");
-		lessorRepository.save(lessor);
+
 	}
 }

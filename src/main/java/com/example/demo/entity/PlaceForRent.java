@@ -14,7 +14,8 @@ public class PlaceForRent {
     private double area;
     private double unitPrice;
 
-    @OneToOne(mappedBy="placeForRent", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name = "lessor_id")
     private Lessor lessor;
 
     @OneToMany(mappedBy = "placeForRent", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })

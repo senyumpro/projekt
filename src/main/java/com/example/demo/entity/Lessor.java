@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "lessors")
@@ -12,19 +13,19 @@ public class Lessor {
     public String firstName;
     public String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "place_for_rent_id")
-    public PlaceForRent placeForRent;
+    public Set<PlaceForRent> placesForRent;
 
     public Lessor() {
 
     }
 
-    public Lessor(Long id, String firstName, String lastName, PlaceForRent placeForRent) {
+    public Lessor(Long id, String firstName, String lastName, Set<PlaceForRent> placeForRent) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.placeForRent = placeForRent;
+        this.placesForRent = placeForRent;
     }
 
     public Long getId() {
@@ -51,11 +52,11 @@ public class Lessor {
         this.lastName = lastName;
     }
 
-    public PlaceForRent getPlaceForRent() {
-        return placeForRent;
+    public Set<PlaceForRent> getPlacesForRent() {
+        return placesForRent;
     }
 
-    public void setPlaceForRent(PlaceForRent placeForRent) {
-        this.placeForRent = placeForRent;
+    public void setPlacesForRent(Set<PlaceForRent> placesForRent) {
+        this.placesForRent = placesForRent;
     }
 }

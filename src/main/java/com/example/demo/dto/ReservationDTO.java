@@ -2,14 +2,23 @@ package com.example.demo.dto;
 
 import com.example.demo.entity.Lessee;
 import com.example.demo.entity.PlaceForRent;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 public class ReservationDTO {
 
     private Long id;
-    private Lessee lessee;
-    private PlaceForRent placeForRent;
+
+    private Long lesseeId;
+
+    private Long placeForRentId;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
     private int leaseTerm;
     private double cost;
 
@@ -17,10 +26,12 @@ public class ReservationDTO {
 
     }
 
-    public ReservationDTO(Long id, Lessee lessee, PlaceForRent placeForRent, int leaseTerm, double cost) {
+    public ReservationDTO(Long id, Long lesseeId, Long placeForRentId, LocalDate startDate, LocalDate endDate, int leaseTerm, double cost) {
         this.id = id;
-        this.lessee = lessee;
-        this.placeForRent = placeForRent;
+        this.lesseeId = lesseeId;
+        this.placeForRentId = placeForRentId;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.leaseTerm = leaseTerm;
         this.cost = cost;
     }
@@ -33,20 +44,36 @@ public class ReservationDTO {
         this.id = id;
     }
 
-    public Lessee getLessee() {
-        return lessee;
+    public Long getLesseeId() {
+        return lesseeId;
     }
 
-    public void setLessee(Lessee lessee) {
-        this.lessee = lessee;
+    public void setLesseeId(Long lesseeId) {
+        this.lesseeId = lesseeId;
     }
 
-    public PlaceForRent getPlaceForRent() {
-        return placeForRent;
+    public Long getPlaceForRentId() {
+        return placeForRentId;
     }
 
-    public void setPlaceForRent(PlaceForRent placeForRent) {
-        this.placeForRent = placeForRent;
+    public void setPlaceForRentId(Long placeForRentId) {
+        this.placeForRentId = placeForRentId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public int getLeaseTerm() {
