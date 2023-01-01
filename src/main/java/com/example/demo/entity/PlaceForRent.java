@@ -82,7 +82,7 @@ public class PlaceForRent {
     public void setDescription(String description) {
         this.description = description;
     }
-
+2
     public Set<Reservation> getReservations() {
         return reservations;
     }

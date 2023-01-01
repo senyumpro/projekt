@@ -24,8 +24,8 @@ public class RentingController {
     }
 
     @PutMapping
-    public Reservation updateReservation(@RequestBody Reservation reservation) {
-        return rentingService.updateReservation(reservation);
+    public Reservation updateReservation(@RequestBody ReservationDTO reservationDTO) {
+        return rentingService.updateReservation(reservationDTO);
     }
 
     @GetMapping

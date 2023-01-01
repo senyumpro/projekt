@@ -49,15 +49,16 @@ public class RentingService {
         return save;
     }
 
-    public Reservation updateReservation(Reservation reservation) {
-        Set<Reservation> existingReservation = reservationRepository.findExistingReservation(reservation.getStartDate(), reservation.getEndDate(), reservation.getPlaceForRent().getId());//TODO check for null
+    public Reservation updateReservation(ReservationDTO reservation) {
+        Set<Reservation> existingReservation = reservationRepository.findExistingReservation(reservation.getStartDate(), reservation.getEndDate(), reservation.getPlaceForRentId());//TODO check for null
 
         if (!existingReservation.isEmpty()) {
-            throw new ReservationAlreadyExistsException(String.format("Reservation with: %s %s %s already exists", reservation.getStartDate(), reservation.getEndDate(), reservation.getPlaceForRent().getId()));
+            throw new ReservationAlreadyExistsException(String.format("Reservation with: %s %s %s already exists", reservation.getStartDate(), reservation.getEndDate(), reservation.getPlaceForRentId()));
         }
 
-        reservationRepository.save(reservation);
-        return reservation;
+        Reservation save = reservationRepository.save(convertReservationDTOtoEntity(reservation));
+
+        return save;
     }
 
     public Set<Reservation> getReservationsByLesseeId(Long lesseeId) {
@@ -119,4 +120,5 @@ public class RentingService {
 
         return lessorDTO;
     }*/
+    //dupa
 }

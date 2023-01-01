@@ -1,7 +1,5 @@
 package com.example.demo;
 
-
-import com.example.demo.entity.Lessor;
 import com.example.demo.repository.LessorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +21,6 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 	}
+
+
 }
